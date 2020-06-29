@@ -85,7 +85,7 @@ else
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="logo menu_mm"><a href="#">Avision</a></div>
+		<div class="logo menu_mm"><a href="#">TheNews</a></div>
 		<div class="search">
 			<form action="#">
 				<input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search...">
@@ -107,7 +107,7 @@ else
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/category.jpg" data-speed="0.8"></div>
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/logo.jpg" data-speed="0.8"></div>
 	</div>
 	
 	<!-- Page Content -->
@@ -832,7 +832,22 @@ else
 
 						<!-- Future Events -->
 
-						
+						<div class="sidebar_section">
+									<div class="advertising_2">
+										<div class="advertising_background" style="background-image:url(<?php echo $row_QuangCao[2][4] ?>)"></div>
+										<div class="advertising_2_content d-flex flex-column align-items-center justify-content-center">
+											<div class="advertising_2_link"><a href="<?php echo $row_QuangCao[2][3] ?>"> <span><?php echo $row_QuangCao[2][2] ?> </span></a></div>
+										</div>
+									</div>
+								</div>
+								<div class="sidebar_section">
+									<div class="advertising_2">
+										<div class="advertising_background" style="background-image:url(<?php echo $row_QuangCao[3][4] ?>)"></div>
+										<div class="advertising_2_content d-flex flex-column align-items-center justify-content-center">
+											<div class="advertising_2_link"><a href="<?php echo $row_QuangCao[3][3] ?>"> <span><?php echo $row_QuangCao[3][2] ?> </span></a></div>
+										</div>
+									</div>
+								</div>
 
 					</div>
 				</div>
