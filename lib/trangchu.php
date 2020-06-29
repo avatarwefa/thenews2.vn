@@ -71,7 +71,9 @@
 
 
 	
-	function TinMoiNhat_TheoTheLoai($idTL){
+	function TinMoiNhat_TheoTheLoai($idTL)
+	{
+
 		
 		$conn  	= myConnect();
 		$qr 	= "
@@ -79,9 +81,23 @@
 			WHERE tin.idTL = $idTL
 			ORDER BY idTin DESC
 			LIMIT 0,30
-		";	
+		";
+		$qr1 =
+		"
+		SELECT * FROM tin 
+			ORDER BY idTin DESC
+			LIMIT 0,30
+
+		"	;
 		
+		if ($idTL==0)
+		{
+		$result = mysqli_query($conn, $qr1);
+		}
+		else
+		{
 		$result = mysqli_query($conn, $qr);
+		}
 		return $result;
 		
 	}

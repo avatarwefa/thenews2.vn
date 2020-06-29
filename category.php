@@ -1,5 +1,13 @@
 <?php
-	$idTL = $_GET['idTL'];
+if (isset($_GET["idTL"]))
+{
+	$idTL = $_GET["idTL"];
+	settype($idTin,"int");
+}
+else
+{
+	$idTL = 0;
+}
 	require "lib/dbCon.php";
 	require "lib/trangchu.php";
 	$conn = MyConnect();
@@ -48,12 +56,19 @@
 						</nav>
 						<div class="search_container ml-auto">
 							<div class="weather">
-								<div class="temperature">+10°</div>
+								<div class="temperature">
+									<?php
+									$weather = json_decode(file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Thanh%20pho%20Ho%20Chi%20Minh&appid=88a357062c9eec802f23fed0459cf76c'));
+							
+									echo $weather->main->temp -273.15 .'°C ' .$weather->weather[0]->main;
+									  ?></div>
 								<img class="weather_icon" src="images/cloud.png" alt="">
 							</div>
-							<form action="#">
-								<input type="search" class="header_search_input" required="required" placeholder="Type to Search...">
-								<img class="header_search_icon" src="images/search.png" alt="">
+							<form action="#" method="post">
+								<input type="search" class="header_search_input"  required="required" placeholder="Type to Search...">
+
+								<img class="header_search_icon" src="images/search.png" alt="" name="btnSearch" type="submit">
+								<button  value="Search"  class="btn btn-outline-secondary" id="icon_search_web" type="button" >Tìm</button>
 							</form>
 							
 						</div>
@@ -110,7 +125,18 @@
 
 						<div class="category">
 							<div class="section_panel d-flex flex-row align-items-center justify-content-start">
-								<div class="section_title"><?php echo view_TenTheLoai($idTL)['TenTL']; ?></div>
+								<div class="section_title"><?php
+								if ($idTL == 0)
+								{
+									echo "Tổng Hợp";
+								}
+								else
+								{
+								 echo view_TenTheLoai($idTL)['TenTL'];
+								}
+								 ?></div>
+								
+								
 								<div class="section_tags ml-auto">
 									<ul>
 
@@ -175,7 +201,7 @@
 												 
 													   ?>" alt="https://www.rbs.ca/wp-content/themes/rbs/images/news-placeholder.png">
 										<div class="card-body">
-											<div class="card-title"><a href="namepost.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
+											<div class="card-title"><a href="post.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
 											<p class="card-text"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][3] ?></p>
 											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinMoiNhat_10tin[$runner_10tin][8]);
 										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinMoiNhat_10tin[$runner_10tin][5]; $runner_10tin++; ?></span></small>
@@ -218,7 +244,7 @@
 					 
 						   ?>" alt="">
 										<div class="card-body">
-											<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
+											<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
 											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinMoiNhat_10tin[$runner_10tin][8]);
 										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinMoiNhat_10tin[$runner_10tin][5]; $runner_10tin++; ?></span></small>
 										</div>
@@ -250,23 +276,118 @@
 
 						<!-- Top Stories -->
 
+						<div id="SearchResult">
+							<!-- Top Stories -->
 						<div class="sidebar_section">
+								<div class="sidebar_title_container">
+									<div class="sidebar_title">Tin được quan tâm</div>
+									<div class="sidebar_slider_nav">
+										<div class="custom_nav_container sidebar_slider_nav_container">
+											<div class="custom_prev custom_prev_top">
+												<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+												<polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
+												</svg>
+											</div>
+											<ul id="custom_dots" class="custom_dots custom_dots_top">
+												<li class="custom_dot custom_dot_top active"><span></span></li>
+												<li class="custom_dot custom_dot_top"><span></span></li>
+												<li class="custom_dot custom_dot_top"><span></span></li>
+											</ul>
+											<div class="custom_next custom_next_top">
+												<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+												<polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
+												</svg>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="sidebar_section_content">
+
+						<!-- Top Stories Slider -->
+						<div class="sidebar_slider_container">
+							<div class="owl-carousel owl-theme sidebar_slider_top">
+
+								<?php
+								$runner_topstories = 0;
+								while($runner_topstories<3)
+								{
+
+									?>
+									<!-- Top Stories Slider Item -->
+									<div class="owl-item">
+
+										<?php
+										$topstories = TinXemNhieuNhat($runner_topstories*6);
+										while ( $row_topstories = mysqli_fetch_array($topstories)) 
+										{
+													# code...
+
+											?>
+											<!-- Sidebar Post -->
+											<div class="side_post">
+												<a href="post.php?idTin=<?php echo $row_topstories['idTin']?>">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="side_post_image"><div><img src="<?php if (strpos($row_topstories[4], 'tintuc') == false) 
+														{
+															echo 'upload/tintuc/';
+														}
+														echo $row_topstories[4]
+														
+
+														?>" alt=""></div></div>
+														<div class="side_post_content">
+															<div class="side_post_title"><?php echo $row_topstories[1] ?></div>
+															<small class="post_meta"><?php $row_tenloaitin = Generate_TenLoaiTin($row_topstories['idLT']);
+										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_topstories[5]; ?></span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+
+											<?php
+											
+										}
+										?>
+
+
+
+									</div>
+
+									<?php 
+
+									$runner_topstories++ ;
+								}
+
+								?>
+
+
+							</div>
+						</div>
+					</div>
+
+
+
+					<!-- Login/Signup -->
+					<div class="sidebar_section newest_videos">
 							<div class="sidebar_title_container">
-								<div class="sidebar_title">Top Stories</div>
+								<div class="sidebar_title">Login/Signup</div>
 								<div class="sidebar_slider_nav">
 									<div class="custom_nav_container sidebar_slider_nav_container">
-										<div class="custom_prev custom_prev_top">
+										<div class="custom_prev custom_prev_vid">
 											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
 												<polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
 											</svg>
 										</div>
-								        <ul id="custom_dots" class="custom_dots custom_dots_top">
-											<li class="custom_dot custom_dot_top active"><span></span></li>
-											<li class="custom_dot custom_dot_top"><span></span></li>
-											<li class="custom_dot custom_dot_top"><span></span></li>
+								        <ul id="custom_dots" class="custom_dots custom_dots_vid">
+											<li class="custom_dot custom_dot_vid active"><span></span></li>
+											<li class="custom_dot custom_dot_vid"><span></span></li>
+											<li class="custom_dot custom_dot_vid"><span></span></li>
 										</ul>
-										<div class="custom_next custom_next_top">
+										<div class="custom_next custom_next_vid">
 											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
 												<polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
@@ -277,180 +398,29 @@
 							</div>
 							<div class="sidebar_section_content">
 
-								<!-- Top Stories Slider -->
+								<!-- Sidebar Slider -->
 								<div class="sidebar_slider_container">
-									<div class="owl-carousel owl-theme sidebar_slider_top">
+									<div class="owl-carousel owl-theme sidebar_slider_vid">
+										<?php
+										if (!isset($_SESSION[
+											'idUser']))
+										{
+											require('login/login.php');
+										}
+										else
+										{
+											require('login/hello.php');
+										}
+										?>
+										<!-- Newest Videos Slider Item -->
+										
 
-										<!-- Top Stories Slider Item -->
-										<div class="owl-item">
+										<!-- Newest Videos Slider Item -->
+										
 
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_1.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
+											
 
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_2.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_3.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_4.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
-
-										<!-- Top Stories Slider Item -->
-										<div class="owl-item">
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_1.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_2.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_3.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_4.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
-
-										<!-- Top Stories Slider Item -->
-										<div class="owl-item">
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_1.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_2.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_3.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Sidebar Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/top_4.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
+										
 
 									</div>
 								</div>
@@ -459,15 +429,186 @@
 
 						<!-- Advertising -->
 
+						<?php
+							$QuangCao1 = QuangCao(1);
+							$row_QuangCao = mysqli_fetch_all($QuangCao1);
+						?>
+
 						<div class="sidebar_section">
 							<div class="advertising">
-								<div class="advertising_background" style="background-image:url(images/post_17.jpg)"></div>
+								<div class="advertising_background" style="background-image:url(<?php echo $row_QuangCao[0][4] ?>)"></div>
 								<div class="advertising_content d-flex flex-column align-items-start justify-content-end">
-									<div class="advertising_perc">-15%</div>
-									<div class="advertising_link"><a href="#">How Did van Gogh’s Turbulent Mind</a></div>
+									<div class="advertising_perc">SALE</div>
+									<div class="advertising_link"><a href="<?php echo $row_QuangCao[0][3] ?>"> <?php echo $row_QuangCao[0][2] ?></a></div>
 								</div>
 							</div>
 						</div>
+
+
+						<!-- Advertising 2 -->
+
+						<div class="sidebar_section">
+							<div class="advertising_2">
+								<div class="advertising_background" style="background-image:url(<?php echo $row_QuangCao[1][4] ?>)"></div>
+								<div class="advertising_2_content d-flex flex-column align-items-center justify-content-center">
+									<div class="advertising_2_link"><a href="<?php echo $row_QuangCao[1][3] ?>"> <span><?php echo $row_QuangCao[1][2] ?> </span></a></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Future Events -->
+						<?php
+						$calendarList = json_decode(file_get_contents('https://www.googleapis.com/calendar/v3/calendars/vi.vietnamese%23holiday%40group.v.calendar.google.com/events?key=AIzaSyDmJxrtjp0Us2y09ORhdaHhRzFdPBoygr4'));
+						$today_dt = date("Y-m-d");
+						$calendar= array();
+						foreach($calendarList->items as $item)
+						{
+							if ($item->start->date >= $today_dt)
+							{
+								array_push($calendar, $item);
+							}
+						}
+
+
+						?>
+
+						<div class="sidebar_section future_events">
+							<div class="sidebar_title_container">
+								<div class="sidebar_title">Sự kiện/ Ngày lễ</div>
+								<div class="sidebar_slider_nav">
+									<div class="custom_nav_container sidebar_slider_nav_container">
+										<div class="custom_prev custom_prev_events">
+											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+												<polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
+											</svg>
+										</div>
+								        <ul id="custom_dots" class="custom_dots custom_dots_events">
+											<li class="custom_dot custom_dot_events active"><span></span></li>
+											<li class="custom_dot custom_dot_events"><span></span></li>
+											<li class="custom_dot custom_dot_events"><span></span></li>
+										</ul>
+										<div class="custom_next custom_next_events">
+											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+												<polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
+											</svg>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sidebar_section_content">
+
+								<!-- Sidebar Slider -->
+								<div class="sidebar_slider_container">
+									<div class="owl-carousel owl-theme sidebar_slider_events">
+
+										<!-- Future Events Slider Item -->
+										<div class="owl-item">
+
+											<?php
+											$runner_national_holiday = 0;
+											while($runner_national_holiday<4)
+											{
+											?>
+											<!-- Future Events Post -->
+											<div class="side_post">
+												<a href="post.php">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="event_date d-flex flex-column align-items-center justify-content-center">
+															<div class="event_day"><?php echo date('d', strtotime($calendar[$runner_national_holiday]->start->date)); ?></div>
+															<div class="event_month"><?php echo date('m', strtotime($calendar[$runner_national_holiday]->start->date)); ?></div>
+														</div>
+														<div class="side_post_content">
+															<div class="side_post_title"><?php echo $calendar[$runner_national_holiday]->summary;  ?> </div>
+															<small class="post_meta"><span><?php echo $calendar[$runner_national_holiday]->creator->displayName ?></span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+											<?php
+											$runner_national_holiday++;
+											}
+											?>
+
+											
+
+										</div>
+
+										<!-- Future Events Slider Item -->
+										<div class="owl-item">
+
+											<!-- Future Events Post -->
+											<div class="side_post">
+												<a href="post.php">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="event_date d-flex flex-column align-items-center justify-content-center">
+															<div class="event_day">13</div>
+															<div class="event_month">apr</div>
+														</div>
+														<div class="side_post_content">
+															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
+															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+
+											<!-- Future Events Post -->
+											<div class="side_post">
+												<a href="post.php">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="event_date d-flex flex-column align-items-center justify-content-center">
+															<div class="event_day">27</div>
+															<div class="event_month">apr</div>
+														</div>
+														<div class="side_post_content">
+															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
+															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+
+											<!-- Future Events Post -->
+											<div class="side_post">
+												<a href="post.php">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="event_date d-flex flex-column align-items-center justify-content-center">
+															<div class="event_day">02</div>
+															<div class="event_month">may</div>
+														</div>
+														<div class="side_post_content">
+															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
+															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+
+											<!-- Future Events Post -->
+											<div class="side_post">
+												<a href="post.php">
+													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+														<div class="event_date d-flex flex-column align-items-center justify-content-center">
+															<div class="event_day">09</div>
+															<div class="event_month">may</div>
+														</div>
+														<div class="side_post_content">
+															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
+															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
+														</div>
+													</div>
+												</a>
+											</div>
+
+										</div>
+
+										
+
+									</div>
+								</div>
+
 
 						<!-- Newest Videos -->
 
@@ -691,248 +832,7 @@
 
 						<!-- Future Events -->
 
-						<div class="sidebar_section future_events">
-							<div class="sidebar_title_container">
-								<div class="sidebar_title">Future Events</div>
-								<div class="sidebar_slider_nav">
-									<div class="custom_nav_container sidebar_slider_nav_container">
-										<div class="custom_prev custom_prev_events">
-											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
-												<polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
-											</svg>
-										</div>
-								        <ul id="custom_dots" class="custom_dots custom_dots_events">
-											<li class="custom_dot custom_dot_events active"><span></span></li>
-											<li class="custom_dot custom_dot_events"><span></span></li>
-											<li class="custom_dot custom_dot_events"><span></span></li>
-										</ul>
-										<div class="custom_next custom_next_events">
-											<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-												 width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
-												<polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
-											</svg>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="sidebar_section_content">
-
-								<!-- Sidebar Slider -->
-								<div class="sidebar_slider_container">
-									<div class="owl-carousel owl-theme sidebar_slider_events">
-
-										<!-- Future Events Slider Item -->
-										<div class="owl-item">
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">13</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">27</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">02</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">09</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
-
-										<!-- Future Events Slider Item -->
-										<div class="owl-item">
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">13</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">27</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">02</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">09</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
-
-										<!-- Future Events Slider Item -->
-										<div class="owl-item">
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">13</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">27</div>
-															<div class="event_month">apr</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">02</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Future Events Post -->
-											<div class="side_post">
-												<a href="post.html">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="event_date d-flex flex-column align-items-center justify-content-center">
-															<div class="event_day">09</div>
-															<div class="event_month">may</div>
-														</div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
+						
 
 					</div>
 				</div>

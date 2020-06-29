@@ -186,9 +186,8 @@ window.setTimeout(function(){
 							<ul>
 								<li class="active"><a href="index.php">Trang Chủ</a></li>
 								<li><a href="category.php">Thể Loại</a></li>
-								<li><a href="#">Tin Thế Giới</a></li>
-								<li><a href="#">Quản lý tài khoản</a></li>
-								<li><a href="#">Chúng Tôi Trên Youtube</a></li>
+								<li><a href="account.php">Quản lý tài khoản</a></li>
+								<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
 								<li><a href="contact.php">Liên Hệ</a></li>
 							</ul>
 						</nav>
@@ -234,9 +233,8 @@ window.setTimeout(function(){
 			<ul class="menu_mm">
 				<li class="active"><a href="index.php">Trang Chủ</a></li>
 				<li><a href="category.php">Thể Loại</a></li>
-				<li><a href="#">Tin Thế Giới</a></li>
-				<li><a href="#">Quản lý tài khoản</a></li>
-				<li><a href="#">Chúng Tôi Trên Youtube</a></li>
+				<li><a href="account.php">Quản lý tài khoản</a></li>
+				<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
 				<li><a href="contact.php">Liên Hệ</a></li>
 			</ul>
 		</nav>
@@ -271,24 +269,27 @@ window.setTimeout(function(){
 					echo $row_tinhotnhat_batin['urlHinh']
 		
 					 
-						   ?>')"></div>
+						   ?>')">
+						   	
+						   </div>
+						   <?php
+
+										$row_tenloaitin = Generate_TenLoaiTin($row_tinhotnhat_batin['idLT']);
+										echo $row_tenloaitin['Ten'];
+										
+							?>
 					<div class="home_slider_content_container">
 						<div class="container">
 							<div class="row">
 								<div class="col">
 									<div class="home_slider_content">
-										<div class="home_slider_item_category trans_200"><a href="category.php" class="trans_200">
-											<?php
-
-										$row_tenloaitin = Generate_TenLoaiTin($row_tinhotnhat_batin['idLT']);
-										echo $row_tenloaitin['Ten'];
-										
-										?></a></div>
+										<div class="home_slider_item_category trans_200"><a href="category.php?<?php echo $row_tinhotnhat_batin['idTL'] ?>" class="trans_200">
+											</a></div>
 										<div class="home_slider_item_title">
 											<a href="post.php?idTin=<?php echo $row_tinhotnhat_batin['idTin'] ?>"><?php echo $row_tinhotnhat_batin['TieuDe'] ?></a>
 										</div>
 										<div class="home_slider_item_link">
-											<a href="namepost.php?idTin=<?php echo $row_tinhotnhat_batin['idTin'] ?>" class="trans_200"><?php echo $row_tinhotnhat_batin['TomTat'] ?>
+											<a href="post.php?idTin=<?php echo $row_tinhotnhat_batin['idTin'] ?>" class="trans_200"><?php echo $row_tinhotnhat_batin['TomTat'] ?>
 												<svg version="1.1" id="link_arrow_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 													 width="19px" height="13px" viewBox="0 0 19 13" enable-background="new 0 0 19 13" xml:space="preserve">
 													<polygon fill="#FFFFFF" points="12.475,0 11.061,0 17.081,6.021 0,6.021 0,7.021 17.038,7.021 11.06,13 12.474,13 18.974,6.5 "/>
@@ -314,7 +315,7 @@ window.setTimeout(function(){
 								<!-- Similar Post -->
 								<div class="col-lg-3 col-md-6 similar_post_col">
 									<div class="similar_post trans_200">
-										<a href="namepost.php?idTin=<?php echo $row_tinmoinhat_batin['idTin']; ?>"><?php echo $row_tinmoinhat_batin['TieuDe']; ?></a>
+										<a href="post.php?idTin=<?php echo $row_tinmoinhat_batin['idTin']; ?>"><?php echo $row_tinmoinhat_batin['TieuDe']; ?></a>
 									</div>
 								</div>
 
@@ -401,7 +402,7 @@ window.setTimeout(function(){
 									<ul>
 
 										<!-- Ajax Right Here -->
-										<li class="active"><a href="category.php">all</a></li>
+										<li class="active"><a href="category.php?idTL=0">all</a></li>
 										<?php
 
 										$list_theloai = DanhSachTheLoai1();
@@ -456,7 +457,7 @@ window.setTimeout(function(){
 
 										?>" alt="https://unsplash.com/@cjtagupa">
 										<div class="card-body">
-											<div class="card-title"><a href="namepost.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
+											<div class="card-title"><a href="post.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
 											<p class="card-text"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][3] ?></p>
 											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinMoiNhat_10tin[$runner_10tin][8]);
 										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinMoiNhat_10tin[$runner_10tin][5]; $runner_10tin++; ?></span></small>
@@ -488,7 +489,7 @@ window.setTimeout(function(){
 
 											?>')"></div>
 											<div class="card-body">
-												<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
+												<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
 												<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinMoiNhat_10tin[$runner_10tin][8]);
 										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinMoiNhat_10tin[$runner_10tin][5]; $runner_10tin++; ?></span></small>
 											</div>
@@ -505,7 +506,7 @@ window.setTimeout(function(){
 
 											?>" alt="">
 											<div class="card-body">
-												<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
+												<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinMoiNhat_10tin[$runner_10tin][0] ?>"><?php echo $row_TinMoiNhat_10tin[$runner_10tin][1] ?></a></div>
 												<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinMoiNhat_10tin[$runner_10tin][8]);
 										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinMoiNhat_10tin[$runner_10tin][5]; $runner_10tin++; ?></span></small>
 											</div>
@@ -640,9 +641,9 @@ window.setTimeout(function(){
 											 
 												   ?>')"></div>
 										<div class="card-body">
-											<div class="card-title"><a href="namepost.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
-											<small class="post_meta"><a href="#"><?php $tacgia = mysqli_fetch_array(viewTacGia($row_TinTheoTheLoai[$runner_TinTheoTheLoai][6]));
-echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
+											<div class="card-title"><a href="post.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
+											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinTheoTheLoai[$runner_TinTheoTheLoai][8]);
+										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
 										</div>
 									</div>
 									
@@ -657,10 +658,10 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheo
 											 
 												   ?>" alt="">
 										<div class="card-body">
-											<div class="card-title"><a href="namepost.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
+											<div class="card-title"><a href="post.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
 											<p class="card-text"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][3] ?></p>
-											<small class="post_meta"><a href="#"><?php $tacgia = mysqli_fetch_array(viewTacGia($row_TinTheoTheLoai[$runner_TinTheoTheLoai][6]));
-echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
+											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinTheoTheLoai[$runner_TinTheoTheLoai][8]);
+										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
 										</div>
 									</div>
 
@@ -675,9 +676,9 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheo
 											 
 												   ?>" alt="">
 										<div class="card-body">
-											<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
-											<small class="post_meta"><a href="#"><?php $tacgia = mysqli_fetch_array(viewTacGia($row_TinTheoTheLoai[$runner_TinTheoTheLoai][6]));
-echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
+											<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1] ?></a></div>
+											<small class="post_meta"><a href="#"><?php $row_tenloaitin = Generate_TenLoaiTin($row_TinTheoTheLoai[$runner_TinTheoTheLoai][8]);
+										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][5]; $runner_TinTheoTheLoai++; ?></span></small>
 										</div>
 									</div>
 									
@@ -693,14 +694,14 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheo
 											 
 												   ?>')"></div>
 										<div class="card-body">
-											<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1]; $runner_TinTheoTheLoai++;?></a></div>
+											<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1]; $runner_TinTheoTheLoai++;?></a></div>
 										</div>
 									</div>
 
 									<!-- Default Card No Image -->
 									<div class="card card_default card_default_no_image grid-item">
 										<div class="card-body">
-											<div class="card-title card-title-small"><a href="namepost.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1]; $runner_TinTheoTheLoai++; ?> </a></div>
+											<div class="card-title card-title-small"><a href="post.php?idTin=<?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][0] ?>"><?php echo $row_TinTheoTheLoai[$runner_TinTheoTheLoai][1]; $runner_TinTheoTheLoai++; ?> </a></div>
 										</div>
 									</div>
 
@@ -737,7 +738,7 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheo
 							<!-- Top Stories -->
 						<div class="sidebar_section">
 								<div class="sidebar_title_container">
-									<div class="sidebar_title">Top Stories</div>
+									<div class="sidebar_title">Tin được quan tâm</div>
 									<div class="sidebar_slider_nav">
 										<div class="custom_nav_container sidebar_slider_nav_container">
 											<div class="custom_prev custom_prev_top">
@@ -797,8 +798,8 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_TinTheoTheLoai[$runner_TinTheo
 														?>" alt=""></div></div>
 														<div class="side_post_content">
 															<div class="side_post_title"><?php echo $row_topstories[1] ?></div>
-															<small class="post_meta"><?php $tacgia = mysqli_fetch_array(viewTacGia($row_topstories[6]));
-															echo $tacgia['HoTen'] ?></a><span><?php echo $row_topstories[5]; ?></span></small>
+															<small class="post_meta"><?php $row_tenloaitin = Generate_TenLoaiTin($row_topstories['idLT']);
+										echo $row_tenloaitin['Ten']; ?></a><span><?php echo $row_topstories[5]; ?></span></small>
 														</div>
 													</div>
 												</a>
