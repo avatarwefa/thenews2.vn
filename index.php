@@ -117,10 +117,31 @@ window.setTimeout(function(){
 }
 ?>
 
+<?php
+if (isset($_POST["btnSignOut"]))
+{
+	unset($_SESSION["idUser"]);
+	unset($_SESSION["Password"]);
+	unset($_SESSION["Username"]);
+	unset($_SESSION["Email"]);
+	unset($_SESSION["HoTen"]);
+	unset($_SESSION["idGroup"]);
+
+	echo "<script> alert('Đăng xuất khỏi TheNews thành công!');
+window.setTimeout(function(){
+
+
+    window.location.href = 'index.php';
+
+}, 3000);
+</script>";
+}
+?>
+
 <!DOCTYPE html>
 <php lang="en">
 <head>
-<title>Avision</title>
+<title>TheNews</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Demo project">
@@ -276,6 +297,7 @@ window.setTimeout(function(){
 
 										$row_tenloaitin = Generate_TenLoaiTin($row_tinhotnhat_batin['idLT']);
 										echo $row_tenloaitin['Ten'];
+
 										
 							?>
 					<div class="home_slider_content_container">
@@ -535,7 +557,7 @@ window.setTimeout(function(){
 						   
 						?>
 
-						<div class="blog_section">
+						<div class="blog_section" id="sectionVideo">
 							<div class="section_panel d-flex flex-row align-items-center justify-content-start">
 								<div class="section_title">Thời sự Video</div>
 							</div>
@@ -836,7 +858,7 @@ window.setTimeout(function(){
 
 						<!-- Newest Videos -->
 
-						<div class="sidebar_section newest_videos">
+						<div class="sidebar_section newest_videos" id="sectionSignIn">
 							<div class="sidebar_title_container">
 								<div class="sidebar_title">Login/Signup</div>
 								<div class="sidebar_slider_nav">
@@ -883,44 +905,7 @@ window.setTimeout(function(){
 										<!-- Newest Videos Slider Item -->
 										
 
-											<!-- Newest Videos Post -->
-											<div class="side_post">
-												<a href="post.php">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/vid_2.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Newest Videos Post -->
-											<div class="side_post">
-												<a href="post.php">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/vid_3.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
-
-											<!-- Newest Videos Post -->
-											<div class="side_post">
-												<a href="post.php">
-													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="images/vid_4.jpg" alt=""></div></div>
-														<div class="side_post_content">
-															<div class="side_post_title">How Did van Gogh’s Turbulent Mind</div>
-															<small class="post_meta">Katy Liu<span>Sep 29</span></small>
-														</div>
-													</div>
-												</a>
-											</div>
+											
 
 										
 
