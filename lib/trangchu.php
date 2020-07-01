@@ -68,6 +68,36 @@
 		return $result;
 		
 	}
+	function TinMoiNhat_TheoTheLoai_30tin($idTL,$page_number)
+	{
+
+		
+		$conn  	= myConnect();
+		$qr 	= "
+			SELECT * FROM tin 
+			WHERE tin.idTL = $idTL
+			ORDER BY idTin DESC
+			LIMIT $page_number,30
+		";
+		$qr1 =
+		"
+		SELECT * FROM tin 
+			ORDER BY idTin DESC
+			LIMIT $page_number,30
+
+		"	;
+		
+		if ($idTL==0)
+		{
+		$result = mysqli_query($conn, $qr1);
+		}
+		else
+		{
+		$result = mysqli_query($conn, $qr);
+		}
+		return $result;
+		
+	}
 
 
 	

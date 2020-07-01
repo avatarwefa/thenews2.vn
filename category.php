@@ -13,6 +13,7 @@ else
 	$conn = MyConnect();
 	ob_start();
 	session_start();
+	$page_number = 0;
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,42 @@ else
 <link rel="stylesheet" type="text/css" href="plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.css">
 <link rel="stylesheet" type="text/css" href="styles/category.css">
 <link rel="stylesheet" type="text/css" href="styles/category_responsive.css">
+
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	var page_number = 0;
+ 	$(document).ready(function()
+{
+	$('#btnNext').click(function()
+	{
+
+		$('#category_section').load('pages/category_loadmore.php',{idTL: <?php echo $idTL ?>, page_number: ++page_number  });
+	})
+	
+});
+
+ 	$(document).ready(function()
+{
+	$('#btnPrevious').click(function()
+	{
+		if(page_number == 0)
+		{
+			alert('Đây đã là trang đầu tiên!');
+			return false;
+		}
+		$('#category_section').load('pages/category_loadmore.php',{idTL: <?php echo $idTL ?>, page_number: --page_number });
+	})
+	
+});
+ 	
+ </script>
+
 </head>
 <body>
 
@@ -175,7 +212,7 @@ else
 									</ul>
 								</div>
 							</div>
-							<div class="section_content">
+							<div class="section_content" id="category_section">
 								<div class="grid clearfix">
 									<?php
 										$TinMoiNhat_10tin = TinMoiNhat_TheoTheLoai($idTL);
@@ -263,9 +300,16 @@ else
 						</div>
 
 					</div>
-					<div class="load_more">
-						<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
-					</div>
+
+
+					
+						<div class="load_more">
+							
+							<div id="load_more" style="float: left;margin-bottom: 50px;" class="load_more_button text-center trans_200"><button type="button" id="btnPrevious" class="btn btn-light">Trước</button></div>
+							<div id="load_more" style="float: right; margin-bottom: 50px;" class="load_more_button text-center trans_200"><button type="button" id="btnNext" class="btn btn-light">Tiếp</button></div>
+						</div>
+
+
 				</div>
 
 				<!-- Sidebar -->
@@ -863,7 +907,7 @@ else
 			<div class="row row-lg-eq-height">
 				<div class="col-lg-9 order-lg-1 order-2">
 					<div class="footer_content">
-						<div class="footer_logo"><a href="#">avision</a></div>
+						<div class="footer_logo"><a href="#">TheNews</a></div>
 						<div class="footer_social">
 							<ul>
 								<li class="footer_social_facebook"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>

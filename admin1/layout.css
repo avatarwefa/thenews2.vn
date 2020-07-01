@@ -1,0 +1,5 @@
+/* CSS Document */
+
+#hangTieuDe{background-color:#123751; color:white;font-size:24px; padding: 10px; text-align:center;}
+#hang2 a{width:150px;padding:10px; background-color: #123751; color:white; font-weight:bold; display:block;float:left;margin-right:1px;text-align: center}
+#hang2 a:hover{background-color:#990}
