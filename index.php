@@ -189,6 +189,10 @@ window.setTimeout(function(){
  	<?php
  		}
  	?>
+
+ 	<?php
+ 	?>
+
  </script>
 </head>
 <body>
@@ -740,16 +744,17 @@ window.setTimeout(function(){
 
 
 
-						
+					<!--	
 					</div>
 					<div class="load_more">
 						<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
 					</div>
-				</div>
-
+				
+-->
 				<!-- Sidebar -->
 
-
+				</div>
+			</div>
 
 				<div class="col-lg-3">
 					<div class="sidebar">

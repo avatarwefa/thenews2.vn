@@ -1,9 +1,76 @@
 <?php
+ob_start();
+session_start();
+require "lib/dbCon.php";
 if (!isset($_SESSION['idUser']))
 {
 	echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!');</script>";
 	header("location : index.php");
 }
+?>
+
+<?php
+	if (isset($_POST["btnUpdateProfile"]))
+	{
+		$idUser = $_SESSION['idUser'];
+		$conn = MyConnect();
+		# code..
+		if ($_POST['txtHoTen'] != $_SESSION['HoTen'])
+		{
+			$HoTen = $_POST['txtHoTen'];
+			$qr = "UPDATE users SET users.HoTen = '$HoTen' WHERE users.idUser = '$idUser'";
+			mysqli_query($conn,$qr);
+		}
+		if ($_POST['txtEmail'] != $_SESSION['Email'])
+		{	
+			$Email = $_POST['txtEmail'];
+			$qr = "UPDATE users SET users.Email = '$Email' WHERE users.idUser = '$idUser'";
+			mysqli_query($conn,$qr);
+		}
+		if ($_POST['txtPassword'] != "" && $_POST['txtRePassword'] != "")
+		{
+			if ($_POST['txtPassword'] == $_POST['txtRePassword'] && $_SESSION['HoTen']!= $_POST['txtPassword'])
+			{
+				$Password = md5($_POST['txtPassword']);
+				$qr = "UPDATE users SET users.Password = '$Password' WHERE users.idUser = '$idUser' ";
+			mysqli_query($conn,$qr);
+			}
+			else
+			{
+				echo "<script> alert('Mật khẩu không trùng khớp')";
+				return false;
+			}
+		}
+		unset($_SESSION["idUser"]);
+	unset($_SESSION["Password"]);
+	unset($_SESSION["Email"]);
+	unset($_SESSION["HoTen"]);
+	unset($_SESSION["idGroup"]);
+	$qr1 = 
+  "
+    select * from users
+    where users.idUser = '$idUser'
+    
+  ";
+	$result = mysqli_query($conn,$qr1);
+  $row_user = mysqli_fetch_array($result);
+	$_SESSION['idUser']= $row_user['idUser'];
+    $_SESSION["Username"] = $row_user['Username'];
+    $_SESSION["Password"] = $row_user['Password'];
+    $_SESSION["HoTen"] = $row_user['HoTen'];
+    $_SESSION["Email"] =$row_user['Email'];
+    $_SESSION["idGroup"] = $row_user['idGroup'];
+		echo "<script> alert('Cập nhật thông tin thành công');
+window.setTimeout(function(){
+
+
+    window.location.href = 'editProfile.php';
+
+}, 3000);
+</script>";
+			
+		}
+		
 ?>
 
 <!DOCTYPE html>
@@ -99,11 +166,34 @@ if (!isset($_SESSION['idUser']))
 						<!-- Post Comment -->
 						<div class="post_comment">
 							<div class="contact_form_container">
-								<form action="#">
-									<input type="text" class="contact_input contact_input_name" placeholder="Your Name" required="required">
-									<input type="email" class="contact_input contact_input_email" placeholder="Your Email" required="required">
-									<textarea class="contact_text" placeholder="Your Message" required="required"></textarea>
-									<button type="submit" class="contact_button">Send Message</button>
+								<form action="#" method="post">
+									<label>
+										Họ tên : 
+									</label>
+									<input type="text" class="contact_input contact_input_name" name="txtHoTen" value="<?php echo $_SESSION['HoTen'] ?>" placeholder="Tên của bạn" style="float: right">
+									<br>
+									<br>
+									<label>
+										Email : 
+									</label>
+								
+									<input type="email" class="contact_input contact_input_email" name="txtEmail" placeholder="Email của bạn" value="<?php echo $_SESSION["Email"] ?>" style="float: right">
+										<br>
+										<br>
+										<label>
+											Mật Khẩu mới : 
+										</label>
+									
+									<input type="password" class="contact_input contact_input_name"  placeholder="Password" name="txtPassword" style="float: right">
+										<br>
+										<br>
+										<label>
+											Nhập lại mật khẩu mới : 
+										</label>
+										
+									<input type="password" class="contact_input contact_input_email" placeholder="RePassword" name="txtRePassword" style="float: right">
+									
+									<button type="submit" name="btnUpdateProfile" class="contact_button">Cập Nhật Thông Tin</button>
 								</form>
 							</div>
 						</div>
@@ -120,7 +210,7 @@ if (!isset($_SESSION['idUser']))
 			<div class="row row-lg-eq-height">
 				<div class="col-lg-9 order-lg-1 order-2">
 					<div class="footer_content">
-						<div class="footer_logo"><a href="#">avision</a></div>
+						<div class="footer_logo"><a href="#">TheNews</a></div>
 						<div class="footer_social">
 							<ul>
 								<li class="footer_social_facebook"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -132,7 +222,7 @@ if (!isset($_SESSION['idUser']))
 							</ul>
 						</div>
 						<div class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Từ Ngọc Huy</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 					</div>
 				</div>
