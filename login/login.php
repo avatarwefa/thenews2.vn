@@ -13,6 +13,8 @@
 				<input type="password" class="form-control" id="txtPass" name="txtPass"  placeholder="Password">
 			</div>
 			<button type="submit" name="btnLogin" id="btnLogin" class="btn btn-info">Đăng Nhập</button>
+			<br>
+			<a href="ResetPassword/forgotPassword.php">Quên mật khẩu? Lấy lại ở đây</a>
 		</form>
 	</div>
 

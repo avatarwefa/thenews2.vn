@@ -165,7 +165,7 @@ window.setTimeout(function(){
 {
 	$('#icon_search_web').click(function()
 	{
-		$('#SearchResult').load('plugin/search.php',{tukhoa: $('.header_search_input').val() });
+		$('#SearchResult').load('plugins/search.php',{tukhoa: $('.header_search_input').val() });
 	})
 	
 });
