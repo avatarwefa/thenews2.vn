@@ -254,22 +254,22 @@ session_start();
 						<div>
 							<input
 							type="text" name="userName" id="userName"
-							class="demoInputBox" placeholder="Name" required>
+							class="demoInputBox" placeholder="Tên Email" required>
 						</div>
 						<div>
 							<input type="text" name="userEmail" id="userEmail"
-							class="demoInputBox" placeholder="From Email..." required>
+							class="demoInputBox" placeholder="Reply đến email..." required>
 						</div>
 						<div>
 							<input type="text" name="subject" id="subject"
-							class="demoInputBox" placeholder="Subject" required>
+							class="demoInputBox" placeholder="Chủ đề email!" required>
 						</div>
 						<div>
 							<textarea name="content" id="content" class="demoInputBox"
-							cols="60" rows="6" placeholder="Content" required></textarea>
+							cols="60" rows="6" placeholder="Nội dung email" required></textarea>
 						</div>
 						<div>
-							<label>Attachment</label><br /> <input type="file"
+							<label>Đính kèm</label><br /> <input type="file"
 							name="attachment[]" class="demoInputBox" multiple="multiple">
 						</div>
 
@@ -278,7 +278,7 @@ session_start();
 						<img src="newsletter/LoaderIcon.gif" />
 					</div>
 					<div class="form-group" align="center">
-						<input type="submit" value="Send" class="btnAction" />
+						<input type="submit" value="Gửi" class="btnAction" />
 					</div>
 				</form>
 			</div>
