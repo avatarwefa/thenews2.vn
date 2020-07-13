@@ -4,8 +4,15 @@ session_start();
 require "lib/dbCon.php";
 if (!isset($_SESSION['idUser']))
 {
-	echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!');</script>";
-	header("location : index.php");
+			echo "<script> alert('Bạn phải đăng nhập trước');
+window.setTimeout(function(){
+
+
+    window.location.href = 'index.php';
+
+}, 500);
+</script>";
+			
 }
 ?>
 
@@ -101,26 +108,27 @@ window.setTimeout(function(){
 			<div class="row">
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
-						<div class="logo"><a href="#">avision</a></div>
+						<div class="logo"><a href="index.php">TheNews</a></div>
 						<nav class="main_nav">
 							<ul>
-								<li class="active"><a href="index.html">Home</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Video</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li ><a href="index.php">Trang Chủ</a></li>
+								<li><a href="category.php">Thể Loại</a></li>
+								<li class="active"><a href="editProfile.php">Thông tin tài khoản</a></li>
+								<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+								<li><a href="contact.php">Liên Hệ</a></li>
 							</ul>
 						</nav>
 						<div class="search_container ml-auto">
 							<div class="weather">
-								<div class="temperature">+10°</div>
+								<div class="temperature">
+									<?php
+									$weather = json_decode(file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Thanh%20pho%20Ho%20Chi%20Minh&appid=88a357062c9eec802f23fed0459cf76c'));
+							
+									echo $weather->main->temp -273.15 .'°C ' .$weather->weather[0]->main;
+									  ?></div>
 								<img class="weather_icon" src="images/cloud.png" alt="">
 							</div>
-							<form action="#">
-								<input type="search" class="header_search_input" required="required" placeholder="Type to Search...">
-								<img class="header_search_icon" src="images/search.png" alt="">
-							</form>
+							
 							
 						</div>
 						<div class="hamburger ml-auto menu_mm">
@@ -136,7 +144,7 @@ window.setTimeout(function(){
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="logo menu_mm"><a href="#">Avision</a></div>
+		<div class="logo menu_mm"><a href="index.php">TheNews</a></div>
 		<div class="search">
 			<form action="#">
 				<input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search...">
@@ -145,12 +153,11 @@ window.setTimeout(function(){
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">home</a></li>
-				<li class="menu_mm"><a href="#">Fashion</a></li>
-				<li class="menu_mm"><a href="#">Gadgets</a></li>
-				<li class="menu_mm"><a href="#">Lifestyle</a></li>
-				<li class="menu_mm"><a href="#">Video</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+				<li class="active"><a href="index.php">Trang Chủ</a></li>
+				<li><a href="category.php">Thể Loại</a></li>
+				<li class="active"><a href="editProfile.php">Thông tin tài khoản</a></li>
+				<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+				<li><a href="contact.php">Liên Hệ</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -1,10 +1,4 @@
-<?php
-if (!isset($_SESSION['idUser']))
-{
-	echo "<script type='text/javascript'>alert('Bạn phải đăng nhập trước!');</script>";
-	header("location : index.php");
-}
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +16,9 @@ if (!isset($_SESSION['idUser']))
 <link rel="stylesheet" type="text/css" href="plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.css">
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+
+ <link rel="stylesheet" type="text/css" media="screen" href="admin/dist/css/contact.css" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
 
@@ -34,26 +31,27 @@ if (!isset($_SESSION['idUser']))
 			<div class="row">
 				<div class="col">
 					<div class="header_content d-flex flex-row align-items-center justify-content-start">
-						<div class="logo"><a href="#">avision</a></div>
+						<div class="logo"><a href="index.php">TheNews</a></div>
 						<nav class="main_nav">
 							<ul>
-								<li class="active"><a href="index.html">Home</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Video</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li ><a href="index.php">Trang Chủ</a></li>
+								<li><a href="category.php">Thể Loại</a></li>
+								<li><a href="editProfile.php">Thông tin tài khoản</a></li>
+								<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+								<li  class="active"><a href="contact.php">Liên Hệ</a></li>
 							</ul>
 						</nav>
 						<div class="search_container ml-auto">
 							<div class="weather">
-								<div class="temperature">+10°</div>
+								<div class="temperature">
+									<?php
+									$weather = json_decode(file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Thanh%20pho%20Ho%20Chi%20Minh&appid=88a357062c9eec802f23fed0459cf76c'));
+							
+									echo $weather->main->temp -273.15 .'°C ' .$weather->weather[0]->main;
+									  ?></div>
 								<img class="weather_icon" src="images/cloud.png" alt="">
 							</div>
-							<form action="#">
-								<input type="search" class="header_search_input" required="required" placeholder="Type to Search...">
-								<img class="header_search_icon" src="images/search.png" alt="">
-							</form>
+							
 							
 						</div>
 						<div class="hamburger ml-auto menu_mm">
@@ -69,7 +67,7 @@ if (!isset($_SESSION['idUser']))
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="logo menu_mm"><a href="#">Avision</a></div>
+		<div class="logo menu_mm"><a href="index.php">TheNews</a></div>
 		<div class="search">
 			<form action="#">
 				<input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search...">
@@ -78,12 +76,11 @@ if (!isset($_SESSION['idUser']))
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.html">home</a></li>
-				<li class="menu_mm"><a href="#">Fashion</a></li>
-				<li class="menu_mm"><a href="#">Gadgets</a></li>
-				<li class="menu_mm"><a href="#">Lifestyle</a></li>
-				<li class="menu_mm"><a href="#">Video</a></li>
-				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+				<li class="active"><a href="index.php">Trang Chủ</a></li>
+				<li><a href="category.php">Thể Loại</a></li>
+				<li><a href="editProfile.php">Thông tin tài khoản</a></li>
+				<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+				<li class="active"><a href="contact.php">Liên Hệ</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -92,24 +89,64 @@ if (!isset($_SESSION['idUser']))
 
 	<div class="home">
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/regular.jpg" data-speed="0.8"></div>
-		<div class="home_content">
+		<div class="home_content" >
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 offset-lg-3">
-						<!-- Post Comment -->
-						<div class="post_comment">
-							<div class="contact_form_container">
-								<form action="#">
-									<input type="text" class="contact_input contact_input_name" placeholder="Your Name" required="required">
-									<input type="email" class="contact_input contact_input_email" placeholder="Your Email" required="required">
-									<textarea class="contact_text" placeholder="Your Message" required="required"></textarea>
-									<button type="submit" class="contact_button">Send Message</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>		
+				
+
+			 <div class="container1">
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <div class="icon">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <h3>
+            <a href="https://www.linkedin.com/in/thenews/" target="_blank">thenews</a>
+          </h3>
+          <p>Thông tin về tuyển dụng của TheNews</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <div class="icon">
+            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <h3>
+            <a href="https://twitter.com/thenews" target="_blank">@thenews</a>
+          </h3>
+          <p>Tài khoản mạng xã hội của thenews.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="face face1">
+        <div class="content">
+          <div class="icon">
+            <i class="fa fa-github-square" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="face face2">
+        <div class="content">
+          <h3>
+            <a href="https://github.com/avatarwefa" target="_blank">avatarwefa</a>
+          </h3>
+          <p>Ở đây bạn có thể tìm kiếm code và project thenews.</p>
+        </div>
+      </div>
+    </div>
+  </div>	
+  			</div>
 		</div>
 	</div>
 

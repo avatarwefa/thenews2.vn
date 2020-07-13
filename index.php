@@ -211,7 +211,7 @@ window.setTimeout(function(){
 							<ul>
 								<li class="active"><a href="index.php">Trang Chủ</a></li>
 								<li><a href="category.php">Thể Loại</a></li>
-								<li><a href="account.php">Quản lý tài khoản</a></li>
+								<li><a href="editProfile.php">Thông tin tài khoản</a></li>
 								<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
 								<li><a href="contact.php">Liên Hệ</a></li>
 							</ul>
@@ -247,7 +247,7 @@ window.setTimeout(function(){
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="logo menu_mm"><a href="#">TheNews</a></div>
+		<div class="logo menu_mm"><a href="index.php">TheNews</a></div>
 		<div class="search">
 			<form action="#">
 				<input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search...">
@@ -258,7 +258,7 @@ window.setTimeout(function(){
 			<ul class="menu_mm">
 				<li class="active"><a href="index.php">Trang Chủ</a></li>
 				<li><a href="category.php">Thể Loại</a></li>
-				<li><a href="account.php">Quản lý tài khoản</a></li>
+				<li><a href="editProfile.php">Thông tin tài khoản</a></li>
 				<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
 				<li><a href="contact.php">Liên Hệ</a></li>
 			</ul>
@@ -760,8 +760,11 @@ window.setTimeout(function(){
 					<div class="sidebar">
 						<div class="sidebar_background"></div>
 
+
+						
+
 						<!-- -->
-						<div id="SearchResult">
+						<div id="SearchResult" style="max-height: 75vh;">
 							<!-- Top Stories -->
 						<div class="sidebar_section">
 								<div class="sidebar_title_container">
@@ -854,16 +857,11 @@ window.setTimeout(function(){
 					</div>
 				</div>
 						</div>
-						
 
 
-						
-					
+						<!-- Newest login -->
 
-
-						<!-- Newest Videos -->
-
-						<div class="sidebar_section newest_videos" id="sectionSignIn">
+						<div class="sidebar_section newest_videos" id="sectionSignIn" style="max-height: 55vh;">
 							<div class="sidebar_title_container">
 								<div class="sidebar_title">Login/Signup</div>
 								<div class="sidebar_slider_nav">
@@ -964,7 +962,7 @@ window.setTimeout(function(){
 
 						?>
 
-						<div class="sidebar_section future_events">
+						<div class="sidebar_section future_events" >
 							<div class="sidebar_title_container">
 								<div class="sidebar_title">Sự kiện/ Ngày lễ</div>
 								<div class="sidebar_slider_nav">
@@ -989,10 +987,10 @@ window.setTimeout(function(){
 									</div>
 								</div>
 							</div>
-							<div class="sidebar_section_content">
+							<div class="sidebar_section_content" >
 
 								<!-- Sidebar Slider -->
-								<div class="sidebar_slider_container">
+								<div class="sidebar_slider_container" style="max-height: 30vh;">
 									<div class="owl-carousel owl-theme sidebar_slider_events">
 
 										<!-- Future Events Slider Item -->
