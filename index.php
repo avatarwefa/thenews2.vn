@@ -138,6 +138,13 @@ window.setTimeout(function(){
 }
 ?>
 
+
+<?php
+	if(isset($_POST["btnManage"])){
+		header("location:./admin1/index.php");
+	}
+?>
+
 <!DOCTYPE html>
 <php lang="en">
 <head>
@@ -760,9 +767,6 @@ window.setTimeout(function(){
 					<div class="sidebar">
 						<div class="sidebar_background"></div>
 
-
-						
-
 						<!-- -->
 						<div id="SearchResult" style="max-height: 75vh;">
 							<!-- Top Stories -->
@@ -857,6 +861,11 @@ window.setTimeout(function(){
 					</div>
 				</div>
 						</div>
+						
+
+
+						
+					
 
 
 						<!-- Newest login -->
@@ -962,7 +971,7 @@ window.setTimeout(function(){
 
 						?>
 
-						<div class="sidebar_section future_events" >
+						<div class="sidebar_section future_events">
 							<div class="sidebar_title_container">
 								<div class="sidebar_title">Sự kiện/ Ngày lễ</div>
 								<div class="sidebar_slider_nav">
@@ -987,7 +996,7 @@ window.setTimeout(function(){
 									</div>
 								</div>
 							</div>
-							<div class="sidebar_section_content" >
+							<div class="sidebar_section_content">
 
 								<!-- Sidebar Slider -->
 								<div class="sidebar_slider_container" style="max-height: 30vh;">
