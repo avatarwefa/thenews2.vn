@@ -80,7 +80,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = "C://xampp/htdocs/thenews.vn/upload/tintuc/";
+$baseDir = "C://xampp/htdocs/thenews2.vn/upload/tintuc/";
 
 /*
  * ### Advanced Settings

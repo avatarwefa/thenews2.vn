@@ -176,7 +176,7 @@ else
 									<ul>
 
 										<!-- Ajax Right Here -->
-										<li class="active"><a href="category.php">all</a></li>
+										<li  <?php if($idTL == 0) echo 'class="active"' ?>><a href="category.php">all</a></li>
 										<?php
 
 										$list_theloai = DanhSachTheLoai1();
@@ -184,7 +184,7 @@ else
 											{
 
 										?>
-										<li><a type="button" id="btnCategory" href="#"> <?php echo $row_list_theloai['TenTL'] ?> </a></li>
+										<li <?php if($idTL==$row_list_theloai['idTL']) echo 'class="active"' ?>><a type="button" id="btnCategory" href="category.php?idTL=<?php echo $row_list_theloai['idTL'] ?>"> <?php echo $row_list_theloai['TenTL'] ?> </a></li>
 										<?php
 											}
 										?>
@@ -201,7 +201,7 @@ else
 											{
 
 										?>
-												<li><a href="category.php"><?php echo $row_list_theloai2['TenTL'] ?></a></li>
+												<li><a href="category.php?idTL=<?php echo $row_list_theloai2['idTL'] ?>"><?php echo $row_list_theloai2['TenTL'] ?></a></li>
 												<?php
 													}
 												?>

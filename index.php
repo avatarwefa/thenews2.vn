@@ -300,7 +300,7 @@ window.setTimeout(function(){
 						   <?php
 
 										$row_tenloaitin = Generate_TenLoaiTin($row_tinhotnhat_batin['idLT']);
-										echo $row_tenloaitin['Ten'];
+										
 
 										
 							?>
@@ -309,8 +309,8 @@ window.setTimeout(function(){
 							<div class="row">
 								<div class="col">
 									<div class="home_slider_content">
-										<div class="home_slider_item_category trans_200"><a href="category.php?<?php echo $row_tinhotnhat_batin['idTL'] ?>" class="trans_200">
-											</a></div>
+										<div class="home_slider_item_category trans_200"><a href="category.php?idTL=<?php echo $row_tinhotnhat_batin['idTL'] ?>" class="trans_200">
+											</a><?php echo $row_tenloaitin['Ten']; ?></div>
 										<div class="home_slider_item_title">
 											<a href="post.php?idTin=<?php echo $row_tinhotnhat_batin['idTin'] ?>"><?php echo $row_tinhotnhat_batin['TieuDe'] ?></a>
 										</div>

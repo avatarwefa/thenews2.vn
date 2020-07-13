@@ -71,7 +71,9 @@
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-	
+    
+    <!-- AJAX, JQUERY LIB -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 	
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
@@ -105,7 +107,16 @@
 	}
 	</script>
 	
-	
+	<script>
+	$(document).ready(function(){
+		$("#idTL").change(function()
+		{
+			var id = $(this).val();
+			$.get("loaitin.php",{idTL:id},function(data){$("#idLT").html(data);
+			});
+		});
+		});
+	</script>
 	
 
 </head>
