@@ -287,7 +287,7 @@ window.setTimeout(function(){
 
 				<!-- Slider Item -->
 				<div class="owl-item">
-					<div class="home_slider_background" style="background-image:url('<?php if (strpos($row_tinhotnhat_batin['urlHinh'], 'tintuc') == false and strpos($row_tinhotnhat_batin['urlHinh'], 'http') == true) 
+					<div class="home_slider_background" style="background-image:url('<?php if (strpos($row_tinhotnhat_batin['urlHinh'], 'tintuc') == false and strpos($row_tinhotnhat_batin['urlHinh'], 'ttp') == false) 
 				{
 
     				echo 'upload/tintuc/';
@@ -360,7 +360,7 @@ window.setTimeout(function(){
 						?>
 						
 						<div class="home_slider_next_container">
-							<div class="home_slider_next" style="background-size:cover;background-image:url('<?php if (strpos($row_tieptheo[($runner+1)%3][4], 'tintuc') == false && strpos($row_tieptheo[($runner+1)%3][4], 'http') == true) 
+							<div class="home_slider_next" style="background-size:cover;background-image:url('<?php if (strpos($row_tieptheo[($runner+1)%3][4], 'tintuc') == false && strpos($row_tieptheo[($runner+1)%3][4], 'ttp') == false) 
 				{
     				echo 'upload/tintuc/';
 				}
@@ -475,7 +475,7 @@ window.setTimeout(function(){
 
 									<!-- Largest Card With Image -->
 									<div class="card card_largest_with_image grid-item">
-										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true ) 
+										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false ) 
 										{
 											echo 'upload/tintuc/';
 										}
@@ -507,7 +507,7 @@ window.setTimeout(function(){
 
 										<!-- Small Card With Background -->
 										<div class="card card_default card_small_with_background grid-item">
-											<div class="card_background" style="background-image:url('<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true) 
+											<div class="card_background" style="background-image:url('<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false) 
 											{
 												echo 'upload/tintuc/';
 											}
@@ -524,7 +524,7 @@ window.setTimeout(function(){
 
 										<!-- Small Card With Image -->
 										<div class="card card_small_with_image grid-item">
-											<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true) 
+											<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false) 
 											{
 												echo 'upload/tintuc/';
 											}
@@ -659,7 +659,7 @@ window.setTimeout(function(){
 									?>
 									<!-- Large Card With Background -->
 									<div class="card card_large_with_background grid-item">
-										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'http') == true) 
+										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'ttp') == false) 
 										{
 						    				echo 'upload/tintuc/';
 										}
@@ -676,7 +676,7 @@ window.setTimeout(function(){
 									
 									<!-- Large Card With Image -->
 									<div class="card grid-item card_large_with_image">
-										<img class="card-img-top" src="<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'http') == true) 
+										<img class="card-img-top" src="<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'ttp') == false) 
 										{
 						    				echo 'upload/tintuc/';
 										}
@@ -694,7 +694,7 @@ window.setTimeout(function(){
 
 									<!-- Default Card With Image -->
 									<div class="card card_small_with_image grid-item">
-										<img class="card-img-top" src="<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'http') == true) 
+										<img class="card-img-top" src="<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'ttp') == false) 
 										{
 						    				echo 'upload/tintuc/';
 										}
@@ -712,7 +712,7 @@ window.setTimeout(function(){
 									<!-- Default Card With Background -->
 
 									<div class="card card_default card_default_with_background grid-item">
-										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'http') == true) 
+										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'tintuc') == false && strpos($row_TinTheoTheLoai[$runner_TinTheoTheLoai][4], 'ttp') == false) 
 										{
 						    				echo 'upload/tintuc/';
 										}
@@ -819,7 +819,7 @@ window.setTimeout(function(){
 											<div class="side_post">
 												<a href="post.php?idTin=<?php echo $row_topstories['idTin']?>">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="<?php if (strpos($row_topstories[4], 'tintuc') == false && strpos($row_topstories[4], 'http') == true) 
+														<div class="side_post_image"><div><img src="<?php if (strpos($row_topstories[4], 'tintuc') == false && strpos($row_topstories[4], 'ttp') == false) 
 														{
 															echo 'upload/tintuc/';
 														}

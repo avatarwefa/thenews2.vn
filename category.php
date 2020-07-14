@@ -227,7 +227,7 @@ else
 									 {
 									?>
 									<div class="card card_largest_with_image grid-item">
-										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true) 
+										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false) 
 											{
 							    				echo 'upload/tintuc/';
 											}
@@ -253,7 +253,7 @@ else
 
 									<!-- Small Card With Background -->
 									<div class="card card_default card_small_with_background grid-item">
-										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true) 
+										<div class="card_background" style="background-image:url('<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false) 
 											{
 							    				echo 'upload/tintuc/';
 											}
@@ -270,7 +270,7 @@ else
 
 									<!-- Small Card With Image -->
 									<div class="card card_small_with_image grid-item">
-										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'http') == true) 
+										<img class="card-img-top" src="<?php if (strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'tintuc') == false && strpos($row_TinMoiNhat_10tin[$runner_10tin][4], 'ttp') == false) 
 				{
     				echo 'upload/tintuc/';
 				}
@@ -372,7 +372,7 @@ else
 											<div class="side_post">
 												<a href="post.php?idTin=<?php echo $row_topstories['idTin']?>">
 													<div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-														<div class="side_post_image"><div><img src="<?php if (strpos($row_topstories[4], 'tintuc') == false && strpos($row_topstories[4], 'http') == true) 
+														<div class="side_post_image"><div><img src="<?php if (strpos($row_topstories[4], 'tintuc') == false && strpos($row_topstories[4], 'ttp') == false) 
 														{
 															echo 'upload/tintuc/';
 														}

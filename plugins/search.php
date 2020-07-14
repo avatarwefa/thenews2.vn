@@ -60,9 +60,9 @@ $tukhoa = $_POST['tukhoa'];
             ?>
             <!-- Sidebar Post -->
             <div class="side_post">
-              <a href="post.php?idTin=$row_searchresult['idTin']">
+              <a href="post.php?idTin=<?php echo $row_searchresult['idTin'] ?>">
                 <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-                  <div class="side_post_image"><div><img src="<?php if (strpos($row_searchresult[4], 'tintuc') == false) 
+                  <div class="side_post_image"><div><img src="<?php if (strpos($row_searchresult[4], 'tintuc') == false && strpos($row_searchresult[4], 'ttp') == false) 
                   {
                     echo 'upload/tintuc/';
                   }
@@ -72,8 +72,8 @@ $tukhoa = $_POST['tukhoa'];
                   ?>" alt=""></div></div>
                   <div class="side_post_content">
                     <div class="side_post_title"><?php echo $row_searchresult[1] ?></div>
-                    <small class="post_meta"><?php $tacgia = mysqli_fetch_array(viewTacGia($row_searchresult[6]));
-                    echo $tacgia['HoTen'] ?></a><span><?php echo $row_searchresult[5]; ?></span></small>
+                    <small class="post_meta"><?php $row_tenloaitin = Generate_TenLoaiTin($row_searchresult['idLT']);
+                    echo $row_tenloaitin['Ten'] ?></a><span><?php echo $row_searchresult[5]; ?></span></small>
                   </div>
                 </div>
               </a>

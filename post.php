@@ -78,6 +78,7 @@ mysqli_query($conn, $qr);
 <link rel="stylesheet" type="text/css" href="plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.css">
 <link rel="stylesheet" type="text/css" href="styles/post_nosidebar.css">
 <link rel="stylesheet" type="text/css" href="styles/post_nosidebar_responsive.css">
+<link rel="stylesheet" type="text/css" href="styles/post.css">
 </head>
 <body>
 
@@ -147,7 +148,7 @@ mysqli_query($conn, $qr);
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false && strpos($row_tin['urlHinh'], 'http') == true) 
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false and strpos($row_tin['urlHinh'], 'ttp') == false) 
 				{
     				echo 'upload/tintuc/';
 				}
@@ -176,15 +177,16 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_tin['Ngay'] ?></span></div>
 				<!-- Post Content -->
 
 				<div class="col-lg-10 offset-lg-1">
-					<div class="post_content">
+					<div class="post_content" >
+
 
 						<!-- Post Body -->
 
 
-						<div class="post_body">
+						<div class="post_body" >
 
 							<figure>
-								<img src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false && strpos($row_tin['urlHinh'], 'http') == true) 
+								<img src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false && strpos($row_tin['urlHinh'], 'ttp') == false) 
 				{
     				echo 'upload/tintuc/';
 				}
@@ -241,7 +243,7 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_tin['Ngay'] ?></span></div>
 
 							<!-- Small Card With Image -->
 							<div class="card card_small_with_image grid-item">
-								<img class="card-img-top" src="<?php if (strpos($row_tincungloai['urlHinh'], 'tintuc') == false && strpos($row_tincungloai['urlHinh'], 'http') == true) 
+								<img class="card-img-top" src="<?php if (strpos($row_tincungloai['urlHinh'], 'tintuc') == false && strpos($row_tincungloai['urlHinh'], 'ttp') == false) 
 				{
     				echo 'upload/tintuc/';
 				}
