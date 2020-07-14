@@ -93,23 +93,24 @@ mysqli_query($conn, $qr);
 						<div class="logo"><a href="index.php">TheNews</a></div>
 						<nav class="main_nav">
 							<ul>
-								<li class="active"><a href="index.php">Home</a></li>
-								<li><a href="#">Fashion</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Lifestyle</a></li>
-								<li><a href="#">Video</a></li>
-								<li><a href="contact.php">Contact</a></li>
+								<li ><a href="index.php">Trang Chủ</a></li>
+								<li class="active"><a href="category.php">Thể Loại</a></li>
+								<li><a href="editProfile.php">Thông tin tài khoản</a></li>
+								<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+								<li><a href="contact.php">Liên Hệ</a></li>
 							</ul>
 						</nav>
 						<div class="search_container ml-auto">
 							<div class="weather">
-								<div class="temperature">+10°</div>
+								<div class="temperature">
+									<?php
+									$weather = json_decode(file_get_contents('http://api.openweathermap.org/data/2.5/weather?q=Thanh%20pho%20Ho%20Chi%20Minh&appid=88a357062c9eec802f23fed0459cf76c'));
+							
+									echo $weather->main->temp -273.15 .'°C ' .$weather->weather[0]->main;
+									  ?></div>
 								<img class="weather_icon" src="images/cloud.png" alt="">
 							</div>
-							<form action="#">
-								<input type="search" class="header_search_input" required="required" placeholder="Type to Search...">
-								<img class="header_search_icon" src="images/search.png" alt="">
-							</form>
+							
 							
 						</div>
 						<div class="hamburger ml-auto menu_mm">
@@ -125,7 +126,7 @@ mysqli_query($conn, $qr);
 
 	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
 		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-		<div class="logo menu_mm"><a href="index.php">TheNews</a></div>
+		<div class="logo menu_mm"><a href="#">TheNews</a></div>
 		<div class="search">
 			<form action="#">
 				<input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search...">
@@ -134,12 +135,11 @@ mysqli_query($conn, $qr);
 		</div>
 		<nav class="menu_nav">
 			<ul class="menu_mm">
-				<li class="menu_mm"><a href="index.php">home</a></li>
-				<li class="menu_mm"><a href="#">Fashion</a></li>
-				<li class="menu_mm"><a href="#">Gadgets</a></li>
-				<li class="menu_mm"><a href="#">Lifestyle</a></li>
-				<li class="menu_mm"><a href="#">Video</a></li>
-				<li class="menu_mm"><a href="contact.php">Contact</a></li>
+				<li><a href="index.php">Trang Chủ</a></li>
+				<li class="active"><a href="category.php">Thể Loại</a></li>
+				<li><a href="editProfile.php">Thông tin tài khoản</a></li>
+				<li><a href="https://www.youtube.com/channel/UCabsTV34JwALXKGMqHpvUiA">Youtube</a></li>
+				<li><a href="contact.php">Liên Hệ</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -147,14 +147,14 @@ mysqli_query($conn, $qr);
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false) 
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false && strpos($row_tin['urlHinh'], 'http') == true) 
 				{
     				echo 'upload/tintuc/';
 				}
 					echo $row_tin['urlHinh']
 		
 					 
-						   ?>" data-speed="0.8"></div>
+						   ?>"  data-speed="0.8"></div>
 		<div class="home_content">
 			<div class="post_category trans_200"><a href="genre.php?idLT=<?php echo $row_tin['idLT'] ?>" class="trans_200"><?php $row_tenloaitin = Generate_TenLoaiTin($row_tin['idLT']);
 										echo $row_tenloaitin['Ten']; ?></a></div>
@@ -184,7 +184,7 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_tin['Ngay'] ?></span></div>
 						<div class="post_body">
 
 							<figure>
-								<img src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false) 
+								<img src="<?php if (strpos($row_tin['urlHinh'], 'tintuc') == false && strpos($row_tin['urlHinh'], 'http') == true) 
 				{
     				echo 'upload/tintuc/';
 				}
@@ -241,7 +241,7 @@ echo $tacgia['HoTen'] ?></a><span><?php echo $row_tin['Ngay'] ?></span></div>
 
 							<!-- Small Card With Image -->
 							<div class="card card_small_with_image grid-item">
-								<img class="card-img-top" src="<?php if (strpos($row_tincungloai['urlHinh'], 'tintuc') == false) 
+								<img class="card-img-top" src="<?php if (strpos($row_tincungloai['urlHinh'], 'tintuc') == false && strpos($row_tincungloai['urlHinh'], 'http') == true) 
 				{
     				echo 'upload/tintuc/';
 				}

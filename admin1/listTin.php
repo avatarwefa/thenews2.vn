@@ -126,7 +126,7 @@
 						  $s = str_replace("{Ngay}", $rowtin['Ngay'],$s);
 						  $s = str_replace("{TieuDe}", $rowtin['TieuDe'],$s);
 						  $s = str_replace("{TomTat}", $rowtin['TomTat'],$s);
-						  if (strpos($rowtin['urlHinh'], 'tintuc') == false) 
+						  if (strpos($rowtin['urlHinh'], 'tintuc') == false && strpos($rowtin['urlHinh'], 'http') == true) 
 									{
 										$rowtin['urlHinh']= 'upload/tintuc/'.$rowtin['urlHinh'];
 									}		 		 
