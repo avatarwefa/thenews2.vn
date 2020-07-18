@@ -11,6 +11,17 @@
 	require "../lib/quantri.php";
 	
 ?>
+<?php
+if (isset($_POST["btnLogOut"]))
+{
+	echo $_SESSION["idGroup"];
+	unset($_SESSION["idUser"]);
+	unset($_SESSION["Username"]);
+	unset($_SESSION["HoTen"]);
+	unset($_SESSION["idGroup"]);
+	header("location:../index.php");
+}
+?>
 
 <?php
 if (isset($_POST["btnThem"]))
@@ -42,7 +53,7 @@ if (isset($_POST["btnThem"]))
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>FREE RESPONSIVE HORIZONTAL ADMIN</title>
+    <title>ADMIN</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -62,7 +73,7 @@ if (isset($_POST["btnThem"]))
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.php">
 					
                     TRANG QUẢN TRỊ
 					
@@ -71,7 +82,9 @@ if (isset($_POST["btnThem"]))
             </div>
 
             <div class="right-div">
-                <a href="#" class="btn btn-info pull-right">LOG ME OUT</a>
+                <form method="post" action="">
+					<input  type="submit" name="btnLogOut" id="btnLogOut" class="btn btn-info pull-right" value = "Log out">
+				</form>
             </div>
         </div>
     </div>
@@ -88,6 +101,7 @@ if (isset($_POST["btnThem"]))
                             <li><a href="./listLoaiTin.php" class="menu-top-active">QUẢN LÝ LOẠI TIN </a></li>
                             <li><a href="./listTin.php">QUẢN LÝ TIN TỨC</a></li>
                             <li><a href="./listQuangCao.php">QUẢN lÝ QUẢNG CÁO</a></li>
+							<li><a href="./newsletter.php">NEWSLETTER</a></li>
 
                         </ul>
                     </div>
