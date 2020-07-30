@@ -6,6 +6,7 @@
 		<p>Xin Chào</p> <?php echo $_SESSION['HoTen'];
 	?> </div>
 	<form method="post" accept="">
+		<button type="submit" name="btnManage" id="btnManage" class="btn btn-light">Quản lý</button>
 		<button type="submit" name="btnSignOut" id="btnSignOut" class="btn btn-light">Đăng xuất</button>
 	</form>
 	

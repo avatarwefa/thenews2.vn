@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //session_start();
 //ob_start();
 
@@ -136,6 +136,13 @@ window.setTimeout(function(){
 }, 3000);
 </script>";
 }
+?>
+
+
+<?php
+	if(isset($_POST["btnManage"])){
+		header("location:./admin1/index.php");
+	}
 ?>
 
 <!DOCTYPE html>
